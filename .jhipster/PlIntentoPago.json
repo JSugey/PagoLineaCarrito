@@ -1,0 +1,42 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "historialcarro",
+            "otherEntityName": "plCarroHist",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "fecha",
+            "fieldType": "ZonedDateTime",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "enviado",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "StatusIntentoPago",
+            "fieldValues": "DISPERSA,ACEPTADA,RECHAZADA"
+        },
+        {
+            "fieldName": "auth",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 30
+        }
+    ],
+    "changelogDate": "20171023212454",
+    "entityTableName": "pl_intento_pago",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

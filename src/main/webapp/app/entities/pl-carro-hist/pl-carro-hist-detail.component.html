@@ -1,0 +1,35 @@
+
+<div *ngIf="plCarroHist">
+    <h2><span jhiTranslate="pagolineaApp.plCarroHist.detail.title">Pl Carro Hist</span> {{plCarroHist.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="pagolineaApp.plCarroHist.fechaEnvio">Fecha Envio</span></dt>
+        <dd>
+            <span>{{plCarroHist.fechaEnvio | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="pagolineaApp.plCarroHist.referencia">Referencia</span></dt>
+        <dd>
+            <span>{{plCarroHist.referencia}}</span>
+        </dd>
+        <dt><span jhiTranslate="pagolineaApp.plCarroHist.carro">Carro</span></dt>
+        <dd>
+            <div *ngIf="plCarroHist.carro">
+                <a [routerLink]="['/pl-carro', plCarroHist.carro?.id]">{{plCarroHist.carro?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'pl-carro-hist/'+ plCarroHist.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

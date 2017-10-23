@@ -1,0 +1,10 @@
+{
+    "pagolineaApp": {
+        "StatusIntentoPago" : {
+            "null": "",
+            "DISPERSA": "DISPERSA",
+            "ACEPTADA": "ACEPTADA",
+            "RECHAZADA": "RECHAZADA"
+        }
+    }
+}

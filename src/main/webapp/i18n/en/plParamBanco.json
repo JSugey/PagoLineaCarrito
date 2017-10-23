@@ -1,0 +1,25 @@
+{
+    "pagolineaApp": {
+        "plParamBanco" : {
+            "home": {
+                "title": "Pl Param Bancos",
+                "createLabel": "Create a new Pl Param Banco",
+                "createOrEditLabel": "Create or edit a Pl Param Banco"
+            },
+            "created": "A new Pl Param Banco is created with identifier {{ param }}",
+            "updated": "A Pl Param Banco is updated with identifier {{ param }}",
+            "deleted": "A Pl Param Banco is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Pl Param Banco {{ id }}?"
+            },
+            "detail": {
+                "title": "Pl Param Banco"
+            },
+            "nombre": "Nombre",
+            "tipo": "Tipo",
+            "enUso": "En Uso",
+            "plParamEnvio": "Pl Param Envio",
+            "plParamRespuesta": "Pl Param Respuesta"
+        }
+    }
+}

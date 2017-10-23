@@ -7,6 +7,15 @@
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Entidades",
+                "plCarro": "Pl Carro",
+                "plCarroDet": "Pl Carro Det",
+                "plCarroHist": "Pl Carro Hist",
+                "plCarroDetHist": "Pl Carro Det Hist",
+                "plIntentoPago": "Pl Intento Pago",
+                "plParamBanco": "Pl Param Banco",
+                "plParamEnvio": "Pl Param Envio",
+                "plParamRespuesta": "Pl Param Respuesta",
+                "plRespuestaBanco": "Pl Respuesta Banco",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

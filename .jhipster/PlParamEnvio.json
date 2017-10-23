@@ -1,0 +1,35 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "intentopago",
+            "otherEntityName": "plIntentoPago",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "plParamEnvio"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "parametrobanco",
+            "otherEntityName": "plParamBanco",
+            "otherEntityRelationshipName": "plParamEnvio"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "valor",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength",
+                "required"
+            ],
+            "fieldValidateRulesMaxlength": 100
+        }
+    ],
+    "changelogDate": "20171023212456",
+    "entityTableName": "pl_param_envio",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

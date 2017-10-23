@@ -40,6 +40,17 @@ public class CacheConfiguration {
             cm.createCache(com.worknest.domain.User.class.getName(), jcacheConfiguration);
             cm.createCache(com.worknest.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(com.worknest.domain.User.class.getName() + ".authorities", jcacheConfiguration);
+            cm.createCache(com.worknest.domain.PlCarro.class.getName(), jcacheConfiguration);
+            cm.createCache(com.worknest.domain.PlCarroDet.class.getName(), jcacheConfiguration);
+            cm.createCache(com.worknest.domain.PlCarroHist.class.getName(), jcacheConfiguration);
+            cm.createCache(com.worknest.domain.PlCarroDetHist.class.getName(), jcacheConfiguration);
+            cm.createCache(com.worknest.domain.PlIntentoPago.class.getName(), jcacheConfiguration);
+            cm.createCache(com.worknest.domain.PlParamBanco.class.getName(), jcacheConfiguration);
+            cm.createCache(com.worknest.domain.PlParamEnvio.class.getName(), jcacheConfiguration);
+            cm.createCache(com.worknest.domain.PlParamEnvio.class.getName() + ".parametrobancos", jcacheConfiguration);
+            cm.createCache(com.worknest.domain.PlParamRespuesta.class.getName(), jcacheConfiguration);
+            cm.createCache(com.worknest.domain.PlParamRespuesta.class.getName() + ".parametrobancos", jcacheConfiguration);
+            cm.createCache(com.worknest.domain.PlRespuestaBanco.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

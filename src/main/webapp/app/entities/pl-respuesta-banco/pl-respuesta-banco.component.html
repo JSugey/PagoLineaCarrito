@@ -1,0 +1,64 @@
+<div>
+    <h2>
+        <span jhiTranslate="pagolineaApp.plRespuestaBanco.home.title">Pl Respuesta Bancos</span>
+        <button class="btn btn-primary float-right jh-create-entity create-pl-respuesta-banco" [routerLink]="['/', { outlets: { popup: ['pl-respuesta-banco-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="pagolineaApp.plRespuestaBanco.home.createLabel">
+            Create new Pl Respuesta Banco
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="plRespuestaBancos">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="pagolineaApp.plRespuestaBanco.exitoso">Exitoso</span></th>
+            <th><span jhiTranslate="pagolineaApp.plRespuestaBanco.fecha">Fecha</span></th>
+            <th><span jhiTranslate="pagolineaApp.plRespuestaBanco.intentopago">Intentopago</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let plRespuestaBanco of plRespuestaBancos ;trackBy: trackId">
+                <td><a [routerLink]="['../pl-respuesta-banco', plRespuestaBanco.id ]">{{plRespuestaBanco.id}}</a></td>
+                <td>{{plRespuestaBanco.exitoso}}</td>
+                <td>{{plRespuestaBanco.fecha | date:'medium'}}</td>
+                <td>
+                    <div *ngIf="plRespuestaBanco.intentopago">
+                        <a [routerLink]="['../pl-intento-pago', plRespuestaBanco.intentopago?.id ]" >{{plRespuestaBanco.intentopago?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../pl-respuesta-banco', plRespuestaBanco.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'pl-respuesta-banco/'+ plRespuestaBanco.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'pl-respuesta-banco/'+ plRespuestaBanco.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

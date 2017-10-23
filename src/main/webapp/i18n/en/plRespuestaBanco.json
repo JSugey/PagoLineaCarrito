@@ -1,0 +1,23 @@
+{
+    "pagolineaApp": {
+        "plRespuestaBanco" : {
+            "home": {
+                "title": "Pl Respuesta Bancos",
+                "createLabel": "Create a new Pl Respuesta Banco",
+                "createOrEditLabel": "Create or edit a Pl Respuesta Banco"
+            },
+            "created": "A new Pl Respuesta Banco is created with identifier {{ param }}",
+            "updated": "A Pl Respuesta Banco is updated with identifier {{ param }}",
+            "deleted": "A Pl Respuesta Banco is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Pl Respuesta Banco {{ id }}?"
+            },
+            "detail": {
+                "title": "Pl Respuesta Banco"
+            },
+            "exitoso": "Exitoso",
+            "fecha": "Fecha",
+            "intentopago": "Intentopago"
+        }
+    }
+}

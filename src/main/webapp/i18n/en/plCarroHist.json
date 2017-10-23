@@ -1,0 +1,23 @@
+{
+    "pagolineaApp": {
+        "plCarroHist" : {
+            "home": {
+                "title": "Pl Carro Hists",
+                "createLabel": "Create a new Pl Carro Hist",
+                "createOrEditLabel": "Create or edit a Pl Carro Hist"
+            },
+            "created": "A new Pl Carro Hist is created with identifier {{ param }}",
+            "updated": "A Pl Carro Hist is updated with identifier {{ param }}",
+            "deleted": "A Pl Carro Hist is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Pl Carro Hist {{ id }}?"
+            },
+            "detail": {
+                "title": "Pl Carro Hist"
+            },
+            "fechaEnvio": "Fecha Envio",
+            "referencia": "Referencia",
+            "carro": "Carro"
+        }
+    }
+}

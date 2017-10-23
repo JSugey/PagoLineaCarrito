@@ -1,0 +1,155 @@
+
+//*********************************************************
+//***************************************** - PAGO EN LINEA
+//*********************************************************
+
+///----------------------------------- Carro
+entity PlCarro{
+	//ID Carro
+    //ID Usuario
+}
+
+///----------------------------------- Carro Detalles
+entity PlCarroDet{
+	//ID Carro Detalle
+    //ID Carro
+    //ID Liquidacion
+	fechaVigencia LocalDate required,
+    importe BigDecimal required,
+    llave String maxlength(31) required,
+    concepto String maxlength(300),
+    generoUs Boolean required
+}
+
+
+///----------------------------------- Carro Historial
+entity PlCarroHist{
+	//ID Carro Hist
+    //ID Carro
+    fechaEnvio ZonedDateTime required,
+    referencia String maxlength(250) required
+}
+
+
+///----------------------------------- Carro Detalle Historial
+entity PlCarroDetHist{
+	//ID Carro Det Hist
+    //ID Carro Hist
+    concepto String maxlength(300),
+    //ID Liquidacion
+    fechaVigencia LocalDate required,
+    importe BigDecimal required,
+    llave String maxlength(31) required,
+    generoUs Boolean required
+}
+
+
+///----------------------------------- Carro Detalle Historial
+entity PlIntentoPago{
+	//ID Intento Pago
+    //ID Carro Hist
+    fecha ZonedDateTime required,
+    enviado Boolean,
+    status StatusIntentoPago,
+    auth String maxlength(30)
+}
+
+enum StatusIntentoPago{
+	DISPERSA,
+    ACEPTADA,
+    RECHAZADA
+}
+
+
+///----------------------------------- Parametro Banco
+entity PlParamBanco{
+	//ID Param Banco
+    //ID Banco
+    nombre String maxlength(100) required,
+    tipo TipoParamBanco required,
+    enUso String maxlength(100)
+}
+
+enum TipoParamBanco{
+	IN, OUT
+}
+
+
+///----------------------------------- Parametro Envio
+entity PlParamEnvio{
+	//ID Parametro Envio
+	//ID Param Banco
+    valor String maxlength(100) required
+    //ID Intento pago
+}
+
+
+///----------------------------------- Parametro Respuesta
+entity PlParamRespuesta{
+	//ID Param Respuesta
+	//ID Param Banco
+    valor String maxlength(100) required
+    //ID Respuesta Banco
+}
+
+
+
+///----------------------------------- Respuesta Banco
+entity PlRespuestaBanco{
+	//ID Respuesta
+    //ID Intento Pago
+    exitoso Boolean required,
+    fecha ZonedDateTime required
+}
+
+
+
+//*********************************************************
+//***************************************** - RELACIONES
+//*********************************************************
+
+
+relationship ManyToOne{
+	PlCarroDet{carro} to PlCarro,
+    PlCarroHist{carro} to PlCarro
+}
+
+relationship ManyToOne{
+	PlCarroDetHist{carro} to PlCarroHist,
+    PlIntentoPago{historial_carro} to PlCarroHist
+}
+
+relationship OneToOne{
+	PlRespuestaBanco{intento_pago} to PlIntentoPago
+}
+
+relationship ManyToOne{
+	PlParamRespuesta{respuesta_banco} to PlRespuestaBanco
+}
+
+
+relationship OneToMany{
+	PlParamRespuesta{parametro_banco} to PlParamBanco
+}
+
+relationship OneToMany{
+	PlParamEnvio{parametro_banco} to PlParamBanco
+}
+
+relationship OneToOne{
+	PlParamEnvio{intento_pago} to PlIntentoPago
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

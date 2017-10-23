@@ -1,0 +1,20 @@
+{
+    "pagolineaApp": {
+        "plCarro" : {
+            "home": {
+                "title": "Pl Carros",
+                "createLabel": "Crear nuevo Pl Carro",
+                "createOrEditLabel": "Crear o editar Pl Carro"
+            },
+            "created": "Un nuevo Pl Carro ha sido creado con el identificador {{ param }}",
+            "updated": "Un Pl Carro ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Pl Carro ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Pl Carro {{ id }}?"
+            },
+            "detail": {
+                "title": "Pl Carro"
+            }
+        }
+    }
+}

@@ -1,0 +1,100 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myPlCarroDetHistLabel" jhiTranslate="pagolineaApp.plCarroDetHist.home.createOrEditLabel">Create or edit a Pl Carro Det Hist</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!plCarroDetHist.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="plCarroDetHist.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="pagolineaApp.plCarroDetHist.concepto" for="field_concepto">Concepto</label>
+            <input type="text" class="form-control" name="concepto" id="field_concepto"
+                [(ngModel)]="plCarroDetHist.concepto" maxlength="300" />
+            <div [hidden]="!(editForm.controls.concepto?.dirty && editForm.controls.concepto?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.concepto?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 300 }">
+                   This field cannot be longer than 300 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="pagolineaApp.plCarroDetHist.fechaVigencia" for="field_fechaVigencia">Fecha Vigencia</label>
+            <div class="input-group">
+                <input id="field_fechaVigencia" type="text" class="form-control" name="fechaVigencia" ngbDatepicker  #fechaVigenciaDp="ngbDatepicker" [(ngModel)]="plCarroDetHist.fechaVigencia"
+                required/>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="fechaVigenciaDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+            <div [hidden]="!(editForm.controls.fechaVigencia?.dirty && editForm.controls.fechaVigencia?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.fechaVigencia?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="pagolineaApp.plCarroDetHist.importe" for="field_importe">Importe</label>
+            <input type="number" class="form-control" name="importe" id="field_importe"
+                [(ngModel)]="plCarroDetHist.importe" required />
+            <div [hidden]="!(editForm.controls.importe?.dirty && editForm.controls.importe?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.importe?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.importe?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="pagolineaApp.plCarroDetHist.llave" for="field_llave">Llave</label>
+            <input type="text" class="form-control" name="llave" id="field_llave"
+                [(ngModel)]="plCarroDetHist.llave" required maxlength="31" />
+            <div [hidden]="!(editForm.controls.llave?.dirty && editForm.controls.llave?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.llave?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.llave?.errors?.maxlength" jhiTranslate="entity.validation.maxlength" translateValues="{ max: 31 }">
+                   This field cannot be longer than 31 characters.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="pagolineaApp.plCarroDetHist.generoUs" for="field_generoUs">Genero Us</label>
+            <input type="checkbox" class="form-control" name="generoUs" id="field_generoUs"
+                [(ngModel)]="plCarroDetHist.generoUs"  />
+            <div [hidden]="!(editForm.controls.generoUs?.dirty && editForm.controls.generoUs?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.generoUs?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="pagolineaApp.plCarroDetHist.carro" for="field_carro">Carro</label>
+            <select class="form-control" id="field_carro" name="carro" [(ngModel)]="plCarroDetHist.carro" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="plCarroHistOption.id === plCarroDetHist.carro?.id ? plCarroDetHist.carro : plCarroHistOption" *ngFor="let plCarroHistOption of plcarrohists; trackBy: trackPlCarroHistById">{{plCarroHistOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

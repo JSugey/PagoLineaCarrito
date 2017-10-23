@@ -1,0 +1,9 @@
+{
+    "pagolineaApp": {
+        "TipoParamBanco" : {
+            "null": "",
+            "IN": "IN",
+            "OUT": "OUT"
+        }
+    }
+}

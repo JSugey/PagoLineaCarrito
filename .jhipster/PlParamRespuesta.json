@@ -1,0 +1,33 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "parametrobanco",
+            "otherEntityName": "plParamBanco",
+            "otherEntityRelationshipName": "plParamRespuesta"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "respuestabanco",
+            "otherEntityName": "plRespuestaBanco",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "valor",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength",
+                "required"
+            ],
+            "fieldValidateRulesMaxlength": 100
+        }
+    ],
+    "changelogDate": "20171023212457",
+    "entityTableName": "pl_param_respuesta",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

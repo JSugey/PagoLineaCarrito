@@ -1,0 +1,23 @@
+{
+    "pagolineaApp": {
+        "plParamEnvio" : {
+            "home": {
+                "title": "Pl Param Envios",
+                "createLabel": "Crear nuevo Pl Param Envio",
+                "createOrEditLabel": "Crear o editar Pl Param Envio"
+            },
+            "created": "Un nuevo Pl Param Envio ha sido creado con el identificador {{ param }}",
+            "updated": "Un Pl Param Envio ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Pl Param Envio ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Pl Param Envio {{ id }}?"
+            },
+            "detail": {
+                "title": "Pl Param Envio"
+            },
+            "valor": "Valor",
+            "intentopago": "Intentopago",
+            "parametrobanco": "Parametrobanco"
+        }
+    }
+}

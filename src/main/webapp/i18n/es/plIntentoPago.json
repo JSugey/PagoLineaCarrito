@@ -1,0 +1,25 @@
+{
+    "pagolineaApp": {
+        "plIntentoPago" : {
+            "home": {
+                "title": "Pl Intento Pagos",
+                "createLabel": "Crear nuevo Pl Intento Pago",
+                "createOrEditLabel": "Crear o editar Pl Intento Pago"
+            },
+            "created": "Un nuevo Pl Intento Pago ha sido creado con el identificador {{ param }}",
+            "updated": "Un Pl Intento Pago ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Pl Intento Pago ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Pl Intento Pago {{ id }}?"
+            },
+            "detail": {
+                "title": "Pl Intento Pago"
+            },
+            "fecha": "Fecha",
+            "enviado": "Enviado",
+            "status": "Status",
+            "auth": "Auth",
+            "historialcarro": "Historialcarro"
+        }
+    }
+}

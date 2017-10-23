@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity PlParamBanco.
+    -->
+    <changeSet id="20171023212455-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="pl_param_envio_id"
+                                 baseTableName="pl_param_banco"
+                                 constraintName="fk_pl_param_banco_pl_param_envio_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pl_param_envio"/>
+
+        <addForeignKeyConstraint baseColumnNames="pl_param_respuesta_id"
+                                 baseTableName="pl_param_banco"
+                                 constraintName="fk_pl_param_banco_pl_param_respuesta_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pl_param_respuesta"/>
+
+    </changeSet>
+</databaseChangeLog>

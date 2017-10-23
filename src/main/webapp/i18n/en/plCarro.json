@@ -1,0 +1,20 @@
+{
+    "pagolineaApp": {
+        "plCarro" : {
+            "home": {
+                "title": "Pl Carros",
+                "createLabel": "Create a new Pl Carro",
+                "createOrEditLabel": "Create or edit a Pl Carro"
+            },
+            "created": "A new Pl Carro is created with identifier {{ param }}",
+            "updated": "A Pl Carro is updated with identifier {{ param }}",
+            "deleted": "A Pl Carro is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Pl Carro {{ id }}?"
+            },
+            "detail": {
+                "title": "Pl Carro"
+            }
+        }
+    }
+}

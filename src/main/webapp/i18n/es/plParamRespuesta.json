@@ -1,0 +1,23 @@
+{
+    "pagolineaApp": {
+        "plParamRespuesta" : {
+            "home": {
+                "title": "Pl Param Respuestas",
+                "createLabel": "Crear nuevo Pl Param Respuesta",
+                "createOrEditLabel": "Crear o editar Pl Param Respuesta"
+            },
+            "created": "Un nuevo Pl Param Respuesta ha sido creado con el identificador {{ param }}",
+            "updated": "Un Pl Param Respuesta ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Pl Param Respuesta ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Pl Param Respuesta {{ id }}?"
+            },
+            "detail": {
+                "title": "Pl Param Respuesta"
+            },
+            "valor": "Valor",
+            "parametrobanco": "Parametrobanco",
+            "respuestabanco": "Respuestabanco"
+        }
+    }
+}

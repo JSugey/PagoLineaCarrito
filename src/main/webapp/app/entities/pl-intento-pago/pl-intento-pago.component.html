@@ -1,0 +1,68 @@
+<div>
+    <h2>
+        <span jhiTranslate="pagolineaApp.plIntentoPago.home.title">Pl Intento Pagos</span>
+        <button class="btn btn-primary float-right jh-create-entity create-pl-intento-pago" [routerLink]="['/', { outlets: { popup: ['pl-intento-pago-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="pagolineaApp.plIntentoPago.home.createLabel">
+            Create new Pl Intento Pago
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="plIntentoPagos">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="pagolineaApp.plIntentoPago.fecha">Fecha</span></th>
+            <th><span jhiTranslate="pagolineaApp.plIntentoPago.enviado">Enviado</span></th>
+            <th><span jhiTranslate="pagolineaApp.plIntentoPago.status">Status</span></th>
+            <th><span jhiTranslate="pagolineaApp.plIntentoPago.auth">Auth</span></th>
+            <th><span jhiTranslate="pagolineaApp.plIntentoPago.historialcarro">Historialcarro</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let plIntentoPago of plIntentoPagos ;trackBy: trackId">
+                <td><a [routerLink]="['../pl-intento-pago', plIntentoPago.id ]">{{plIntentoPago.id}}</a></td>
+                <td>{{plIntentoPago.fecha | date:'medium'}}</td>
+                <td>{{plIntentoPago.enviado}}</td>
+                <td jhiTranslate="{{'pagolineaApp.StatusIntentoPago.' + plIntentoPago.status}}">{{plIntentoPago.status}}</td>
+                <td>{{plIntentoPago.auth}}</td>
+                <td>
+                    <div *ngIf="plIntentoPago.historialcarro">
+                        <a [routerLink]="['../pl-carro-hist', plIntentoPago.historialcarro?.id ]" >{{plIntentoPago.historialcarro?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../pl-intento-pago', plIntentoPago.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'pl-intento-pago/'+ plIntentoPago.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'pl-intento-pago/'+ plIntentoPago.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

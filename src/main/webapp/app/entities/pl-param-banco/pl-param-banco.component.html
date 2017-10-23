@@ -1,0 +1,72 @@
+<div>
+    <h2>
+        <span jhiTranslate="pagolineaApp.plParamBanco.home.title">Pl Param Bancos</span>
+        <button class="btn btn-primary float-right jh-create-entity create-pl-param-banco" [routerLink]="['/', { outlets: { popup: ['pl-param-banco-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="pagolineaApp.plParamBanco.home.createLabel">
+            Create new Pl Param Banco
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="plParamBancos">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="pagolineaApp.plParamBanco.nombre">Nombre</span></th>
+            <th><span jhiTranslate="pagolineaApp.plParamBanco.tipo">Tipo</span></th>
+            <th><span jhiTranslate="pagolineaApp.plParamBanco.enUso">En Uso</span></th>
+            <th><span jhiTranslate="pagolineaApp.plParamBanco.plParamEnvio">Pl Param Envio</span></th>
+            <th><span jhiTranslate="pagolineaApp.plParamBanco.plParamRespuesta">Pl Param Respuesta</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let plParamBanco of plParamBancos ;trackBy: trackId">
+                <td><a [routerLink]="['../pl-param-banco', plParamBanco.id ]">{{plParamBanco.id}}</a></td>
+                <td>{{plParamBanco.nombre}}</td>
+                <td jhiTranslate="{{'pagolineaApp.TipoParamBanco.' + plParamBanco.tipo}}">{{plParamBanco.tipo}}</td>
+                <td>{{plParamBanco.enUso}}</td>
+                <td>
+                    <div *ngIf="plParamBanco.plParamEnvio">
+                        <a [routerLink]="['../pl-param-envio', plParamBanco.plParamEnvio?.id ]" >{{plParamBanco.plParamEnvio?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="plParamBanco.plParamRespuesta">
+                        <a [routerLink]="['../pl-param-respuesta', plParamBanco.plParamRespuesta?.id ]" >{{plParamBanco.plParamRespuesta?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../pl-param-banco', plParamBanco.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'pl-param-banco/'+ plParamBanco.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'pl-param-banco/'+ plParamBanco.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

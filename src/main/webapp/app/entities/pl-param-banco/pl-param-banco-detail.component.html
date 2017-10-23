@@ -1,0 +1,45 @@
+
+<div *ngIf="plParamBanco">
+    <h2><span jhiTranslate="pagolineaApp.plParamBanco.detail.title">Pl Param Banco</span> {{plParamBanco.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="pagolineaApp.plParamBanco.nombre">Nombre</span></dt>
+        <dd>
+            <span>{{plParamBanco.nombre}}</span>
+        </dd>
+        <dt><span jhiTranslate="pagolineaApp.plParamBanco.tipo">Tipo</span></dt>
+        <dd>
+            <span jhiTranslate="{{'pagolineaApp.TipoParamBanco.' + plParamBanco.tipo}}">{{plParamBanco.tipo}}</span>
+        </dd>
+        <dt><span jhiTranslate="pagolineaApp.plParamBanco.enUso">En Uso</span></dt>
+        <dd>
+            <span>{{plParamBanco.enUso}}</span>
+        </dd>
+        <dt><span jhiTranslate="pagolineaApp.plParamBanco.plParamEnvio">Pl Param Envio</span></dt>
+        <dd>
+            <div *ngIf="plParamBanco.plParamEnvio">
+                <a [routerLink]="['/pl-param-envio', plParamBanco.plParamEnvio?.id]">{{plParamBanco.plParamEnvio?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="pagolineaApp.plParamBanco.plParamRespuesta">Pl Param Respuesta</span></dt>
+        <dd>
+            <div *ngIf="plParamBanco.plParamRespuesta">
+                <a [routerLink]="['/pl-param-respuesta', plParamBanco.plParamRespuesta?.id]">{{plParamBanco.plParamRespuesta?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'pl-param-banco/'+ plParamBanco.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

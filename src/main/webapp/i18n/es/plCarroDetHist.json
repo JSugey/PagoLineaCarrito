@@ -1,0 +1,26 @@
+{
+    "pagolineaApp": {
+        "plCarroDetHist" : {
+            "home": {
+                "title": "Pl Carro Det Hists",
+                "createLabel": "Crear nuevo Pl Carro Det Hist",
+                "createOrEditLabel": "Crear o editar Pl Carro Det Hist"
+            },
+            "created": "Un nuevo Pl Carro Det Hist ha sido creado con el identificador {{ param }}",
+            "updated": "Un Pl Carro Det Hist ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Pl Carro Det Hist ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Pl Carro Det Hist {{ id }}?"
+            },
+            "detail": {
+                "title": "Pl Carro Det Hist"
+            },
+            "concepto": "Concepto",
+            "fechaVigencia": "Fecha Vigencia",
+            "importe": "Importe",
+            "llave": "Llave",
+            "generoUs": "Genero Us",
+            "carro": "Carro"
+        }
+    }
+}

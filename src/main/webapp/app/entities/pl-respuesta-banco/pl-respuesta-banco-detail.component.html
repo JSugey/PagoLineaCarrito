@@ -1,0 +1,35 @@
+
+<div *ngIf="plRespuestaBanco">
+    <h2><span jhiTranslate="pagolineaApp.plRespuestaBanco.detail.title">Pl Respuesta Banco</span> {{plRespuestaBanco.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="pagolineaApp.plRespuestaBanco.exitoso">Exitoso</span></dt>
+        <dd>
+            <span>{{plRespuestaBanco.exitoso}}</span>
+        </dd>
+        <dt><span jhiTranslate="pagolineaApp.plRespuestaBanco.fecha">Fecha</span></dt>
+        <dd>
+            <span>{{plRespuestaBanco.fecha | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="pagolineaApp.plRespuestaBanco.intentopago">Intentopago</span></dt>
+        <dd>
+            <div *ngIf="plRespuestaBanco.intentopago">
+                <a [routerLink]="['/pl-intento-pago', plRespuestaBanco.intentopago?.id]">{{plRespuestaBanco.intentopago?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'pl-respuesta-banco/'+ plRespuestaBanco.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,70 @@
+<div>
+    <h2>
+        <span jhiTranslate="pagolineaApp.plCarroDet.home.title">Pl Carro Dets</span>
+        <button class="btn btn-primary float-right jh-create-entity create-pl-carro-det" [routerLink]="['/', { outlets: { popup: ['pl-carro-det-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="pagolineaApp.plCarroDet.home.createLabel">
+            Create new Pl Carro Det
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="plCarroDets">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="pagolineaApp.plCarroDet.fechaVigencia">Fecha Vigencia</span></th>
+            <th><span jhiTranslate="pagolineaApp.plCarroDet.importe">Importe</span></th>
+            <th><span jhiTranslate="pagolineaApp.plCarroDet.llave">Llave</span></th>
+            <th><span jhiTranslate="pagolineaApp.plCarroDet.concepto">Concepto</span></th>
+            <th><span jhiTranslate="pagolineaApp.plCarroDet.generoUs">Genero Us</span></th>
+            <th><span jhiTranslate="pagolineaApp.plCarroDet.carro">Carro</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let plCarroDet of plCarroDets ;trackBy: trackId">
+                <td><a [routerLink]="['../pl-carro-det', plCarroDet.id ]">{{plCarroDet.id}}</a></td>
+                <td>{{plCarroDet.fechaVigencia | date:'mediumDate'}}</td>
+                <td>{{plCarroDet.importe}}</td>
+                <td>{{plCarroDet.llave}}</td>
+                <td>{{plCarroDet.concepto}}</td>
+                <td>{{plCarroDet.generoUs}}</td>
+                <td>
+                    <div *ngIf="plCarroDet.carro">
+                        <a [routerLink]="['../pl-carro', plCarroDet.carro?.id ]" >{{plCarroDet.carro?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../pl-carro-det', plCarroDet.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'pl-carro-det/'+ plCarroDet.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'pl-carro-det/'+ plCarroDet.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

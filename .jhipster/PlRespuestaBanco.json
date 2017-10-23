@@ -1,0 +1,34 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "intentopago",
+            "otherEntityName": "plIntentoPago",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "plRespuestaBanco"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "exitoso",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "fecha",
+            "fieldType": "ZonedDateTime",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20171023212458",
+    "entityTableName": "pl_respuesta_banco",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

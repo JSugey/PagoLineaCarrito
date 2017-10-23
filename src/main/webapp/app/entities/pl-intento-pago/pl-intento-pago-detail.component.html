@@ -1,0 +1,43 @@
+
+<div *ngIf="plIntentoPago">
+    <h2><span jhiTranslate="pagolineaApp.plIntentoPago.detail.title">Pl Intento Pago</span> {{plIntentoPago.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="pagolineaApp.plIntentoPago.fecha">Fecha</span></dt>
+        <dd>
+            <span>{{plIntentoPago.fecha | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="pagolineaApp.plIntentoPago.enviado">Enviado</span></dt>
+        <dd>
+            <span>{{plIntentoPago.enviado}}</span>
+        </dd>
+        <dt><span jhiTranslate="pagolineaApp.plIntentoPago.status">Status</span></dt>
+        <dd>
+            <span jhiTranslate="{{'pagolineaApp.StatusIntentoPago.' + plIntentoPago.status}}">{{plIntentoPago.status}}</span>
+        </dd>
+        <dt><span jhiTranslate="pagolineaApp.plIntentoPago.auth">Auth</span></dt>
+        <dd>
+            <span>{{plIntentoPago.auth}}</span>
+        </dd>
+        <dt><span jhiTranslate="pagolineaApp.plIntentoPago.historialcarro">Historialcarro</span></dt>
+        <dd>
+            <div *ngIf="plIntentoPago.historialcarro">
+                <a [routerLink]="['/pl-carro-hist', plIntentoPago.historialcarro?.id]">{{plIntentoPago.historialcarro?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'pl-intento-pago/'+ plIntentoPago.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,47 @@
+
+<div *ngIf="plCarroDet">
+    <h2><span jhiTranslate="pagolineaApp.plCarroDet.detail.title">Pl Carro Det</span> {{plCarroDet.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="pagolineaApp.plCarroDet.fechaVigencia">Fecha Vigencia</span></dt>
+        <dd>
+            <span>{{plCarroDet.fechaVigencia | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="pagolineaApp.plCarroDet.importe">Importe</span></dt>
+        <dd>
+            <span>{{plCarroDet.importe}}</span>
+        </dd>
+        <dt><span jhiTranslate="pagolineaApp.plCarroDet.llave">Llave</span></dt>
+        <dd>
+            <span>{{plCarroDet.llave}}</span>
+        </dd>
+        <dt><span jhiTranslate="pagolineaApp.plCarroDet.concepto">Concepto</span></dt>
+        <dd>
+            <span>{{plCarroDet.concepto}}</span>
+        </dd>
+        <dt><span jhiTranslate="pagolineaApp.plCarroDet.generoUs">Genero Us</span></dt>
+        <dd>
+            <span>{{plCarroDet.generoUs}}</span>
+        </dd>
+        <dt><span jhiTranslate="pagolineaApp.plCarroDet.carro">Carro</span></dt>
+        <dd>
+            <div *ngIf="plCarroDet.carro">
+                <a [routerLink]="['/pl-carro', plCarroDet.carro?.id]">{{plCarroDet.carro?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'pl-carro-det/'+ plCarroDet.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,26 @@
+{
+    "pagolineaApp": {
+        "plCarroDet" : {
+            "home": {
+                "title": "Pl Carro Dets",
+                "createLabel": "Crear nuevo Pl Carro Det",
+                "createOrEditLabel": "Crear o editar Pl Carro Det"
+            },
+            "created": "Un nuevo Pl Carro Det ha sido creado con el identificador {{ param }}",
+            "updated": "Un Pl Carro Det ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Pl Carro Det ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Pl Carro Det {{ id }}?"
+            },
+            "detail": {
+                "title": "Pl Carro Det"
+            },
+            "fechaVigencia": "Fecha Vigencia",
+            "importe": "Importe",
+            "llave": "Llave",
+            "concepto": "Concepto",
+            "generoUs": "Genero Us",
+            "carro": "Carro"
+        }
+    }
+}
