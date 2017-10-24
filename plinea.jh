@@ -7,6 +7,7 @@
 entity PlCarro{
 	//ID Carro
     //ID Usuario
+    idUsuario Long required
 }
 
 ///----------------------------------- Carro Detalles

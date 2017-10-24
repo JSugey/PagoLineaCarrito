@@ -14,7 +14,8 @@
             },
             "detail": {
                 "title": "Pl Carro"
-            }
+            },
+            "idUsuario": "Id Usuario"
         }
     }
 }

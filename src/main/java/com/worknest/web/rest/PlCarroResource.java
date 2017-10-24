@@ -4,6 +4,7 @@ import com.codahale.metrics.annotation.Timed;
 import com.worknest.domain.PlCarro;
 
 import com.worknest.repository.PlCarroRepository;
+import com.worknest.service.ServicioPlCarro;
 import com.worknest.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
@@ -11,11 +12,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
 import java.util.List;
 import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * REST controller for managing PlCarro.
@@ -27,6 +30,9 @@ public class PlCarroResource {
     private final Logger log = LoggerFactory.getLogger(PlCarroResource.class);
 
     private static final String ENTITY_NAME = "plCarro";
+    
+    @Autowired
+    private ServicioPlCarro servicioCarro;
 
     private final PlCarroRepository plCarroRepository;
     public PlCarroResource(PlCarroRepository plCarroRepository) {
@@ -42,7 +48,7 @@ public class PlCarroResource {
      */
     @PostMapping("/pl-carros")
     @Timed
-    public ResponseEntity<PlCarro> createPlCarro(@RequestBody PlCarro plCarro) throws URISyntaxException {
+    public ResponseEntity<PlCarro> createPlCarro(@Valid @RequestBody PlCarro plCarro) throws URISyntaxException {
         log.debug("REST request to save PlCarro : {}", plCarro);
         if (plCarro.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new plCarro cannot already have an ID")).body(null);
@@ -64,7 +70,7 @@ public class PlCarroResource {
      */
     @PutMapping("/pl-carros")
     @Timed
-    public ResponseEntity<PlCarro> updatePlCarro(@RequestBody PlCarro plCarro) throws URISyntaxException {
+    public ResponseEntity<PlCarro> updatePlCarro(@Valid @RequestBody PlCarro plCarro) throws URISyntaxException {
         log.debug("REST request to update PlCarro : {}", plCarro);
         if (plCarro.getId() == null) {
             return createPlCarro(plCarro);
@@ -114,4 +120,20 @@ public class PlCarroResource {
         plCarroRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
+    
+    /**
+     * Metodo para verificar que el usuario logeado tenga un carro
+     * si no lo tiene se le crea uno
+     */    
+    @PostMapping("pl-carro/crear")
+    @Timed
+    public void crearCarro(){
+        Long idUsuario = (long)951; //se optiene del id del usuario logeado
+        PlCarro carrito = servicioCarro.buscarUsuario(idUsuario); //se busca si el usuario tiene un carro registrado
+        if (carrito == null) { //si el usuario no tiene un carro, se le crea uno
+            PlCarro carrito2 = new PlCarro(idUsuario);            
+            servicioCarro.guardarCarrito(carrito2);
+        }
+    }
+    
 }

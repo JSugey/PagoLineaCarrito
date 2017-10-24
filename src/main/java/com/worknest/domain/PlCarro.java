@@ -4,6 +4,7 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -22,6 +23,18 @@ public class PlCarro implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
+    @NotNull
+    @Column(name = "id_usuario", nullable = false)
+    private Long idUsuario;
+
+    public PlCarro(Long idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public PlCarro() {
+    }
+       
+
     // jhipster-needle-entity-add-field - Jhipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -29,6 +42,19 @@ public class PlCarro implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getIdUsuario() {
+        return idUsuario;
+    }
+
+    public PlCarro idUsuario(Long idUsuario) {
+        this.idUsuario = idUsuario;
+        return this;
+    }
+
+    public void setIdUsuario(Long idUsuario) {
+        this.idUsuario = idUsuario;
     }
     // jhipster-needle-entity-add-getters-setters - Jhipster will add getters and setters here, do not remove
 
@@ -56,6 +82,7 @@ public class PlCarro implements Serializable {
     public String toString() {
         return "PlCarro{" +
             "id=" + getId() +
+            ", idUsuario='" + getIdUsuario() + "'" +
             "}";
     }
 }

@@ -12,5 +12,6 @@ import org.springframework.data.jpa.repository.*;
 @SuppressWarnings("unused")
 @Repository
 public interface PlCarroRepository extends JpaRepository<PlCarro, Long> {
-
+    //busca si existe un carro para el usuario
+    PlCarro findByIdUsuario(Long idUsuario);
 }

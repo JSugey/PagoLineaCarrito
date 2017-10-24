@@ -53,6 +53,20 @@ public class PlCarroDet implements Serializable {
     @ManyToOne
     private PlCarro carro;
 
+    public PlCarroDet(Long idLiquidacion, LocalDate fechaVigencia, BigDecimal importe, String llave, String concepto, Boolean generoUs, PlCarro carro) {
+        this.idLiquidacion = idLiquidacion;
+        this.fechaVigencia = fechaVigencia;
+        this.importe = importe;
+        this.llave = llave;
+        this.concepto = concepto;
+        this.generoUs = generoUs;
+        this.carro = carro;
+    }
+
+    public PlCarroDet() {
+    }
+
+
     // jhipster-needle-entity-add-field - Jhipster will add fields here, do not remove
     public Long getId() {
         return id;

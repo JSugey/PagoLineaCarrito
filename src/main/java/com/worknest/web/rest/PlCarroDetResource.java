@@ -1,11 +1,16 @@
 package com.worknest.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.worknest.domain.PlCarro;
 import com.worknest.domain.PlCarroDet;
 
 import com.worknest.repository.PlCarroDetRepository;
+import com.worknest.service.ServicioPlCarroDet;
+import com.worknest.service.ServicioPlCarro;
+import com.worknest.service.dto.AgregarConceptoDTO;
 import com.worknest.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
+import java.math.BigDecimal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -14,9 +19,14 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.LocalDate;
+import java.util.HashMap;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 
 /**
  * REST controller for managing PlCarroDet.
@@ -28,6 +38,12 @@ public class PlCarroDetResource {
     private final Logger log = LoggerFactory.getLogger(PlCarroDetResource.class);
 
     private static final String ENTITY_NAME = "plCarroDet";
+    
+    @Autowired
+    private ServicioPlCarroDet servicioCarroDet;
+    
+    @Autowired
+    private ServicioPlCarro servicioCarro;
 
     private final PlCarroDetRepository plCarroDetRepository;
     public PlCarroDetResource(PlCarroDetRepository plCarroDetRepository) {
@@ -114,5 +130,44 @@ public class PlCarroDetResource {
         log.debug("REST request to delete PlCarroDet : {}", id);
         plCarroDetRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+    }
+    
+    /**
+     * Metodo que agrega un nuevo concepto a la tabla PlCarroDet
+     * @param nuevoConcepto datos del concepto a agregar (llave,bimestre inicia y bimestre final)
+     * @return ResponseEntity con status 200(ok) o 400 con mensaje de error
+     */
+    @PostMapping("/pl-carro-det/agregar-concepto")
+    @Timed
+    public ResponseEntity agegarConcepto(@RequestBody AgregarConceptoDTO nuevoConcepto){
+        ResponseEntity respuesta = null;//Respuesta a la petición del cliente
+        Map resultado = new HashMap();//Map para generar el JSON con nombre
+        
+        Long idUsuario = (long)951; //se optiene del id del usuario logeado
+        PlCarro carrito = servicioCarro.buscarUsuario(idUsuario); //se busca el carro del usuario      
+        PlCarroDet detallesCarro;
+        //****datos de prueba***
+            Long idLiq = (long)123;//id liquidacion
+            LocalDate fecha = LocalDate.now();//fecha de vigencia
+            BigDecimal importe= new BigDecimal("222221.23");//importe
+            String concepto;//concepto de liquidacion
+            Boolean genero;
+        if (nuevoConcepto.getBimini()==null || nuevoConcepto.getBimfin()== null) {//agregar al carro por numero de liquidacion
+            //consultar liquidacion 
+            concepto = "concepto prueba liquidacion";
+            //crear nuevo concepto en PlCarroDet
+            genero=false;
+            
+        }else{ //agregar al carro por clave catastral
+            //generar liquidacion con los datos del nuevo concepto
+            concepto = "concepto prueba clave catastral";
+            //crear nuevo concepto en PlCarroDet
+            genero=true;
+        }
+        detallesCarro = new PlCarroDet(idLiq, fecha, importe, nuevoConcepto.getLlave(),concepto,genero,carrito); //Agregamos la respuesta al map
+        servicioCarroDet.guardarCarritoDet(detallesCarro);
+        resultado.put("respuesta", detallesCarro);//Generamos el JSON con el concepto agregado
+        respuesta = new ResponseEntity(resultado, HttpStatus.OK);//Retornamos la respuesta con el json y el estatus
+        return respuesta;
     }
 }

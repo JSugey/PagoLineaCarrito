@@ -37,6 +37,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = PagolineaApp.class)
 public class PlCarroResourceIntTest {
 
+    private static final Long DEFAULT_ID_USUARIO = 1L;
+    private static final Long UPDATED_ID_USUARIO = 2L;
+
     @Autowired
     private PlCarroRepository plCarroRepository;
 
@@ -73,7 +76,8 @@ public class PlCarroResourceIntTest {
      * if they test an entity which requires the current entity.
      */
     public static PlCarro createEntity(EntityManager em) {
-        PlCarro plCarro = new PlCarro();
+        PlCarro plCarro = new PlCarro()
+            .idUsuario(DEFAULT_ID_USUARIO);
         return plCarro;
     }
 
@@ -97,6 +101,7 @@ public class PlCarroResourceIntTest {
         List<PlCarro> plCarroList = plCarroRepository.findAll();
         assertThat(plCarroList).hasSize(databaseSizeBeforeCreate + 1);
         PlCarro testPlCarro = plCarroList.get(plCarroList.size() - 1);
+        assertThat(testPlCarro.getIdUsuario()).isEqualTo(DEFAULT_ID_USUARIO);
     }
 
     @Test
@@ -120,6 +125,24 @@ public class PlCarroResourceIntTest {
 
     @Test
     @Transactional
+    public void checkIdUsuarioIsRequired() throws Exception {
+        int databaseSizeBeforeTest = plCarroRepository.findAll().size();
+        // set the field null
+        plCarro.setIdUsuario(null);
+
+        // Create the PlCarro, which fails.
+
+        restPlCarroMockMvc.perform(post("/api/pl-carros")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(plCarro)))
+            .andExpect(status().isBadRequest());
+
+        List<PlCarro> plCarroList = plCarroRepository.findAll();
+        assertThat(plCarroList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllPlCarros() throws Exception {
         // Initialize the database
         plCarroRepository.saveAndFlush(plCarro);
@@ -128,7 +151,8 @@ public class PlCarroResourceIntTest {
         restPlCarroMockMvc.perform(get("/api/pl-carros?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(plCarro.getId().intValue())));
+            .andExpect(jsonPath("$.[*].id").value(hasItem(plCarro.getId().intValue())))
+            .andExpect(jsonPath("$.[*].idUsuario").value(hasItem(DEFAULT_ID_USUARIO.intValue())));
     }
 
     @Test
@@ -141,7 +165,8 @@ public class PlCarroResourceIntTest {
         restPlCarroMockMvc.perform(get("/api/pl-carros/{id}", plCarro.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.id").value(plCarro.getId().intValue()));
+            .andExpect(jsonPath("$.id").value(plCarro.getId().intValue()))
+            .andExpect(jsonPath("$.idUsuario").value(DEFAULT_ID_USUARIO.intValue()));
     }
 
     @Test
@@ -161,6 +186,8 @@ public class PlCarroResourceIntTest {
 
         // Update the plCarro
         PlCarro updatedPlCarro = plCarroRepository.findOne(plCarro.getId());
+        updatedPlCarro
+            .idUsuario(UPDATED_ID_USUARIO);
 
         restPlCarroMockMvc.perform(put("/api/pl-carros")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -171,6 +198,7 @@ public class PlCarroResourceIntTest {
         List<PlCarro> plCarroList = plCarroRepository.findAll();
         assertThat(plCarroList).hasSize(databaseSizeBeforeUpdate);
         PlCarro testPlCarro = plCarroList.get(plCarroList.size() - 1);
+        assertThat(testPlCarro.getIdUsuario()).isEqualTo(UPDATED_ID_USUARIO);
     }
 
     @Test

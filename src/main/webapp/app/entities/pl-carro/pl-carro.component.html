@@ -17,12 +17,14 @@
             <thead>
             <tr>
             <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="pagolineaApp.plCarro.idUsuario">Id Usuario</span></th>
             <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let plCarro of plCarros ;trackBy: trackId">
                 <td><a [routerLink]="['../pl-carro', plCarro.id ]">{{plCarro.id}}</a></td>
+                <td>{{plCarro.idUsuario}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

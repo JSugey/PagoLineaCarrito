@@ -1,0 +1,23 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="WorkNest9 (generated)" id="1508868840039-1">
+        <addForeignKeyConstraint baseColumnNames="intentopago_id" baseTableName="pl_respuesta_banco" constraintName="FK17uf2qda9shmvi7u77j99g27f" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="pl_intento_pago"/>
+    </changeSet>
+    <changeSet author="WorkNest9 (generated)" id="1508868840039-2">
+        <addForeignKeyConstraint baseColumnNames="pl_param_banco_id" baseTableName="pl_param_respuesta" constraintName="FKeoym9hqxbttitpgmtj1do6len" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="pl_param_banco"/>
+    </changeSet>
+    <changeSet author="WorkNest9 (generated)" id="1508868840039-3">
+        <addForeignKeyConstraint baseColumnNames="respuestabanco_id" baseTableName="pl_param_respuesta" constraintName="FKgnxs3ifhytu8oro090uidqk8y" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="pl_respuesta_banco"/>
+    </changeSet>
+    <changeSet author="WorkNest9 (generated)" id="1508868840039-4">
+        <addForeignKeyConstraint baseColumnNames="intentopago_id" baseTableName="pl_param_envio" constraintName="FKs74dri007trr07oialjm97nil" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="pl_intento_pago"/>
+    </changeSet>
+    <changeSet author="WorkNest9 (generated)" id="1508868840039-5">
+        <addForeignKeyConstraint baseColumnNames="pl_param_banco_id" baseTableName="pl_param_envio" constraintName="FKyrl7a3hqnoofblrqtl7j5onp" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="pl_param_banco"/>
+    </changeSet>
+    <changeSet author="WorkNest9 (generated)" id="1508868840039-6">
+        <alterSequence sequenceName="hibernate_sequence"/>
+        <alterSequence sequenceName="hibernate_sequence"/>
+        <alterSequence sequenceName="hibernate_sequence"/>
+    </changeSet>
+</databaseChangeLog>
