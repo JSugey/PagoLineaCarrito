@@ -10,6 +10,13 @@
     ],
     "fields": [
         {
+            "fieldName": "idLiquidacion",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
             "fieldName": "fechaVigencia",
             "fieldType": "LocalDate",
             "fieldValidateRules": [

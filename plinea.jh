@@ -14,6 +14,7 @@ entity PlCarroDet{
 	//ID Carro Detalle
     //ID Carro
     //ID Liquidacion
+    idLiquidacion Long required, //********
 	fechaVigencia LocalDate required,
     importe BigDecimal required,
     llave String maxlength(31) required,
@@ -37,6 +38,7 @@ entity PlCarroDetHist{
     //ID Carro Hist
     concepto String maxlength(300),
     //ID Liquidacion
+    idLiquidacion Long required, //********
     fechaVigencia LocalDate required,
     importe BigDecimal required,
     llave String maxlength(31) required,
@@ -101,6 +103,12 @@ entity PlRespuestaBanco{
     exitoso Boolean required,
     fecha ZonedDateTime required
 }
+
+
+
+
+
+
 
 
 

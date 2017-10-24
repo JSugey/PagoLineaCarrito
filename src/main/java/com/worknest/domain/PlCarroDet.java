@@ -26,6 +26,10 @@ public class PlCarroDet implements Serializable {
     private Long id;
 
     @NotNull
+    @Column(name = "id_liquidacion", nullable = false)
+    private Long idLiquidacion;
+
+    @NotNull
     @Column(name = "fecha_vigencia", nullable = false)
     private LocalDate fechaVigencia;
 
@@ -56,6 +60,19 @@ public class PlCarroDet implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getIdLiquidacion() {
+        return idLiquidacion;
+    }
+
+    public PlCarroDet idLiquidacion(Long idLiquidacion) {
+        this.idLiquidacion = idLiquidacion;
+        return this;
+    }
+
+    public void setIdLiquidacion(Long idLiquidacion) {
+        this.idLiquidacion = idLiquidacion;
     }
 
     public LocalDate getFechaVigencia() {
@@ -161,6 +178,7 @@ public class PlCarroDet implements Serializable {
     public String toString() {
         return "PlCarroDet{" +
             "id=" + getId() +
+            ", idLiquidacion='" + getIdLiquidacion() + "'" +
             ", fechaVigencia='" + getFechaVigencia() + "'" +
             ", importe='" + getImporte() + "'" +
             ", llave='" + getLlave() + "'" +

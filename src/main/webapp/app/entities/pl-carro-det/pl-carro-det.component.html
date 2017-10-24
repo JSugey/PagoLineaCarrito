@@ -17,6 +17,7 @@
             <thead>
             <tr>
             <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="pagolineaApp.plCarroDet.idLiquidacion">Id Liquidacion</span></th>
             <th><span jhiTranslate="pagolineaApp.plCarroDet.fechaVigencia">Fecha Vigencia</span></th>
             <th><span jhiTranslate="pagolineaApp.plCarroDet.importe">Importe</span></th>
             <th><span jhiTranslate="pagolineaApp.plCarroDet.llave">Llave</span></th>
@@ -29,6 +30,7 @@
             <tbody>
             <tr *ngFor="let plCarroDet of plCarroDets ;trackBy: trackId">
                 <td><a [routerLink]="['../pl-carro-det', plCarroDet.id ]">{{plCarroDet.id}}</a></td>
+                <td>{{plCarroDet.idLiquidacion}}</td>
                 <td>{{plCarroDet.fechaVigencia | date:'mediumDate'}}</td>
                 <td>{{plCarroDet.importe}}</td>
                 <td>{{plCarroDet.llave}}</td>

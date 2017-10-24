@@ -15,6 +15,7 @@
             "detail": {
                 "title": "Pl Carro Det"
             },
+            "idLiquidacion": "Id Liquidacion",
             "fechaVigencia": "Fecha Vigencia",
             "importe": "Importe",
             "llave": "Llave",

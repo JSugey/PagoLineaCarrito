@@ -30,6 +30,10 @@ public class PlCarroDetHist implements Serializable {
     private String concepto;
 
     @NotNull
+    @Column(name = "id_liquidacion", nullable = false)
+    private Long idLiquidacion;
+
+    @NotNull
     @Column(name = "fecha_vigencia", nullable = false)
     private LocalDate fechaVigencia;
 
@@ -69,6 +73,19 @@ public class PlCarroDetHist implements Serializable {
 
     public void setConcepto(String concepto) {
         this.concepto = concepto;
+    }
+
+    public Long getIdLiquidacion() {
+        return idLiquidacion;
+    }
+
+    public PlCarroDetHist idLiquidacion(Long idLiquidacion) {
+        this.idLiquidacion = idLiquidacion;
+        return this;
+    }
+
+    public void setIdLiquidacion(Long idLiquidacion) {
+        this.idLiquidacion = idLiquidacion;
     }
 
     public LocalDate getFechaVigencia() {
@@ -162,6 +179,7 @@ public class PlCarroDetHist implements Serializable {
         return "PlCarroDetHist{" +
             "id=" + getId() +
             ", concepto='" + getConcepto() + "'" +
+            ", idLiquidacion='" + getIdLiquidacion() + "'" +
             ", fechaVigencia='" + getFechaVigencia() + "'" +
             ", importe='" + getImporte() + "'" +
             ", llave='" + getLlave() + "'" +

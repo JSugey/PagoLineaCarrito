@@ -43,6 +43,9 @@ public class PlCarroDetHistResourceIntTest {
     private static final String DEFAULT_CONCEPTO = "AAAAAAAAAA";
     private static final String UPDATED_CONCEPTO = "BBBBBBBBBB";
 
+    private static final Long DEFAULT_ID_LIQUIDACION = 1L;
+    private static final Long UPDATED_ID_LIQUIDACION = 2L;
+
     private static final LocalDate DEFAULT_FECHA_VIGENCIA = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_FECHA_VIGENCIA = LocalDate.now(ZoneId.systemDefault());
 
@@ -93,6 +96,7 @@ public class PlCarroDetHistResourceIntTest {
     public static PlCarroDetHist createEntity(EntityManager em) {
         PlCarroDetHist plCarroDetHist = new PlCarroDetHist()
             .concepto(DEFAULT_CONCEPTO)
+            .idLiquidacion(DEFAULT_ID_LIQUIDACION)
             .fechaVigencia(DEFAULT_FECHA_VIGENCIA)
             .importe(DEFAULT_IMPORTE)
             .llave(DEFAULT_LLAVE)
@@ -121,6 +125,7 @@ public class PlCarroDetHistResourceIntTest {
         assertThat(plCarroDetHistList).hasSize(databaseSizeBeforeCreate + 1);
         PlCarroDetHist testPlCarroDetHist = plCarroDetHistList.get(plCarroDetHistList.size() - 1);
         assertThat(testPlCarroDetHist.getConcepto()).isEqualTo(DEFAULT_CONCEPTO);
+        assertThat(testPlCarroDetHist.getIdLiquidacion()).isEqualTo(DEFAULT_ID_LIQUIDACION);
         assertThat(testPlCarroDetHist.getFechaVigencia()).isEqualTo(DEFAULT_FECHA_VIGENCIA);
         assertThat(testPlCarroDetHist.getImporte()).isEqualTo(DEFAULT_IMPORTE);
         assertThat(testPlCarroDetHist.getLlave()).isEqualTo(DEFAULT_LLAVE);
@@ -144,6 +149,24 @@ public class PlCarroDetHistResourceIntTest {
         // Validate the Alice in the database
         List<PlCarroDetHist> plCarroDetHistList = plCarroDetHistRepository.findAll();
         assertThat(plCarroDetHistList).hasSize(databaseSizeBeforeCreate);
+    }
+
+    @Test
+    @Transactional
+    public void checkIdLiquidacionIsRequired() throws Exception {
+        int databaseSizeBeforeTest = plCarroDetHistRepository.findAll().size();
+        // set the field null
+        plCarroDetHist.setIdLiquidacion(null);
+
+        // Create the PlCarroDetHist, which fails.
+
+        restPlCarroDetHistMockMvc.perform(post("/api/pl-carro-det-hists")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(plCarroDetHist)))
+            .andExpect(status().isBadRequest());
+
+        List<PlCarroDetHist> plCarroDetHistList = plCarroDetHistRepository.findAll();
+        assertThat(plCarroDetHistList).hasSize(databaseSizeBeforeTest);
     }
 
     @Test
@@ -230,6 +253,7 @@ public class PlCarroDetHistResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(plCarroDetHist.getId().intValue())))
             .andExpect(jsonPath("$.[*].concepto").value(hasItem(DEFAULT_CONCEPTO.toString())))
+            .andExpect(jsonPath("$.[*].idLiquidacion").value(hasItem(DEFAULT_ID_LIQUIDACION.intValue())))
             .andExpect(jsonPath("$.[*].fechaVigencia").value(hasItem(DEFAULT_FECHA_VIGENCIA.toString())))
             .andExpect(jsonPath("$.[*].importe").value(hasItem(DEFAULT_IMPORTE.intValue())))
             .andExpect(jsonPath("$.[*].llave").value(hasItem(DEFAULT_LLAVE.toString())))
@@ -248,6 +272,7 @@ public class PlCarroDetHistResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(plCarroDetHist.getId().intValue()))
             .andExpect(jsonPath("$.concepto").value(DEFAULT_CONCEPTO.toString()))
+            .andExpect(jsonPath("$.idLiquidacion").value(DEFAULT_ID_LIQUIDACION.intValue()))
             .andExpect(jsonPath("$.fechaVigencia").value(DEFAULT_FECHA_VIGENCIA.toString()))
             .andExpect(jsonPath("$.importe").value(DEFAULT_IMPORTE.intValue()))
             .andExpect(jsonPath("$.llave").value(DEFAULT_LLAVE.toString()))
@@ -273,6 +298,7 @@ public class PlCarroDetHistResourceIntTest {
         PlCarroDetHist updatedPlCarroDetHist = plCarroDetHistRepository.findOne(plCarroDetHist.getId());
         updatedPlCarroDetHist
             .concepto(UPDATED_CONCEPTO)
+            .idLiquidacion(UPDATED_ID_LIQUIDACION)
             .fechaVigencia(UPDATED_FECHA_VIGENCIA)
             .importe(UPDATED_IMPORTE)
             .llave(UPDATED_LLAVE)
@@ -288,6 +314,7 @@ public class PlCarroDetHistResourceIntTest {
         assertThat(plCarroDetHistList).hasSize(databaseSizeBeforeUpdate);
         PlCarroDetHist testPlCarroDetHist = plCarroDetHistList.get(plCarroDetHistList.size() - 1);
         assertThat(testPlCarroDetHist.getConcepto()).isEqualTo(UPDATED_CONCEPTO);
+        assertThat(testPlCarroDetHist.getIdLiquidacion()).isEqualTo(UPDATED_ID_LIQUIDACION);
         assertThat(testPlCarroDetHist.getFechaVigencia()).isEqualTo(UPDATED_FECHA_VIGENCIA);
         assertThat(testPlCarroDetHist.getImporte()).isEqualTo(UPDATED_IMPORTE);
         assertThat(testPlCarroDetHist.getLlave()).isEqualTo(UPDATED_LLAVE);

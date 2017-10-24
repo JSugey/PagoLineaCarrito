@@ -13,6 +13,21 @@
                    [(ngModel)]="plCarroDet.id" readonly />
         </div>
         <div class="form-group">
+            <label class="form-control-label" jhiTranslate="pagolineaApp.plCarroDet.idLiquidacion" for="field_idLiquidacion">Id Liquidacion</label>
+            <input type="number" class="form-control" name="idLiquidacion" id="field_idLiquidacion"
+                [(ngModel)]="plCarroDet.idLiquidacion" required />
+            <div [hidden]="!(editForm.controls.idLiquidacion?.dirty && editForm.controls.idLiquidacion?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.idLiquidacion?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.idLiquidacion?.errors?.number" jhiTranslate="entity.validation.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
             <label class="form-control-label" jhiTranslate="pagolineaApp.plCarroDet.fechaVigencia" for="field_fechaVigencia">Fecha Vigencia</label>
             <div class="input-group">
                 <input id="field_fechaVigencia" type="text" class="form-control" name="fechaVigencia" ngbDatepicker  #fechaVigenciaDp="ngbDatepicker" [(ngModel)]="plCarroDet.fechaVigencia"

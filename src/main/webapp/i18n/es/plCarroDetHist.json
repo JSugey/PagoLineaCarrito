@@ -16,6 +16,7 @@
                 "title": "Pl Carro Det Hist"
             },
             "concepto": "Concepto",
+            "idLiquidacion": "Id Liquidacion",
             "fechaVigencia": "Fecha Vigencia",
             "importe": "Importe",
             "llave": "Llave",

@@ -21,6 +21,10 @@
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
+            <column name="id_liquidacion" type="bigint">
+                <constraints nullable="false" />
+            </column>
+
             <column name="fecha_vigencia" type="date">
                 <constraints nullable="false" />
             </column>

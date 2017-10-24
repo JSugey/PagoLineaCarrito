@@ -506,7 +506,7 @@
                     <changeLogFile>src/main/resources/config/liquibase/master.xml</changeLogFile>
                     <diffChangeLogFile>src/main/resources/config/liquibase/changelog/${maven.build.timestamp}_changelog.xml</diffChangeLogFile>
                     <driver></driver>
-                    <url>jdbc:sqlserver://192.168.0.25:1433;database=caja_cobro</url>
+                    <url>jdbc:sqlserver://192.168.0.25:1433;database=pago_linea</url>
                     <defaultSchemaName></defaultSchemaName>
                     <username>badmin</username>
                     <password>badmin</password>
