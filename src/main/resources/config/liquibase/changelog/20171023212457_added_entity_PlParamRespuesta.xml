@@ -25,6 +25,10 @@
                 <constraints nullable="false" />
             </column>
 
+            <column name="pl_param_banco_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
             <column name="respuestabanco_id" type="bigint">
                 <constraints nullable="true" />
             </column>

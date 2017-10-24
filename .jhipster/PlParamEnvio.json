@@ -2,17 +2,17 @@
     "fluentMethods": true,
     "relationships": [
         {
+            "relationshipName": "plParamBanco",
+            "otherEntityName": "plParamBanco",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
             "relationshipType": "one-to-one",
             "relationshipName": "intentopago",
             "otherEntityName": "plIntentoPago",
             "otherEntityField": "id",
             "ownerSide": true,
-            "otherEntityRelationshipName": "plParamEnvio"
-        },
-        {
-            "relationshipType": "one-to-many",
-            "relationshipName": "parametrobanco",
-            "otherEntityName": "plParamBanco",
             "otherEntityRelationshipName": "plParamEnvio"
         }
     ],

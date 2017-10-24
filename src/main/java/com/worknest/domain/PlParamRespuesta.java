@@ -1,14 +1,11 @@
 package com.worknest.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -31,10 +28,8 @@ public class PlParamRespuesta implements Serializable {
     @Column(name = "valor", length = 100, nullable = false)
     private String valor;
 
-    @OneToMany(mappedBy = "plParamRespuesta")
-    @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<PlParamBanco> parametrobancos = new HashSet<>();
+    @ManyToOne
+    private PlParamBanco plParamBanco;
 
     @ManyToOne
     private PlRespuestaBanco respuestabanco;
@@ -61,29 +56,17 @@ public class PlParamRespuesta implements Serializable {
         this.valor = valor;
     }
 
-    public Set<PlParamBanco> getParametrobancos() {
-        return parametrobancos;
+    public PlParamBanco getPlParamBanco() {
+        return plParamBanco;
     }
 
-    public PlParamRespuesta parametrobancos(Set<PlParamBanco> plParamBancos) {
-        this.parametrobancos = plParamBancos;
+    public PlParamRespuesta plParamBanco(PlParamBanco plParamBanco) {
+        this.plParamBanco = plParamBanco;
         return this;
     }
 
-    public PlParamRespuesta addParametrobanco(PlParamBanco plParamBanco) {
-        this.parametrobancos.add(plParamBanco);
-        plParamBanco.setPlParamRespuesta(this);
-        return this;
-    }
-
-    public PlParamRespuesta removeParametrobanco(PlParamBanco plParamBanco) {
-        this.parametrobancos.remove(plParamBanco);
-        plParamBanco.setPlParamRespuesta(null);
-        return this;
-    }
-
-    public void setParametrobancos(Set<PlParamBanco> plParamBancos) {
-        this.parametrobancos = plParamBancos;
+    public void setPlParamBanco(PlParamBanco plParamBanco) {
+        this.plParamBanco = plParamBanco;
     }
 
     public PlRespuestaBanco getRespuestabanco() {

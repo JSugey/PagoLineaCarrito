@@ -137,11 +137,13 @@ relationship ManyToOne{
 
 
 relationship OneToMany{
-	PlParamRespuesta{parametro_banco} to PlParamBanco
+	PlParamBanco{paramRespuesta} to PlParamRespuesta
+	//PlParamRespuesta{parametro_banco} to PlParamBanco
 }
 
 relationship OneToMany{
-	PlParamEnvio{parametro_banco} to PlParamBanco
+	PlParamBanco{paramEnvio} to PlParamEnvio
+	//PlParamEnvio{parametro_banco} to PlParamBanco
 }
 
 relationship OneToOne{

@@ -18,8 +18,8 @@
             "nombre": "Nombre",
             "tipo": "Tipo",
             "enUso": "En Uso",
-            "plParamEnvio": "Pl Param Envio",
-            "plParamRespuesta": "Pl Param Respuesta"
+            "paramRespuesta": "Param Respuesta",
+            "paramEnvio": "Param Envio"
         }
     }
 }

@@ -8,6 +8,12 @@
         <dd>
             <span>{{plParamEnvio.valor}}</span>
         </dd>
+        <dt><span jhiTranslate="pagolineaApp.plParamEnvio.plParamBanco">Pl Param Banco</span></dt>
+        <dd>
+            <div *ngIf="plParamEnvio.plParamBanco">
+                <a [routerLink]="['/pl-param-banco', plParamEnvio.plParamBanco?.id]">{{plParamEnvio.plParamBanco?.id}}</a>
+            </div>
+        </dd>
         <dt><span jhiTranslate="pagolineaApp.plParamEnvio.intentopago">Intentopago</span></dt>
         <dd>
             <div *ngIf="plParamEnvio.intentopago">

@@ -20,8 +20,6 @@
             <th><span jhiTranslate="pagolineaApp.plParamBanco.nombre">Nombre</span></th>
             <th><span jhiTranslate="pagolineaApp.plParamBanco.tipo">Tipo</span></th>
             <th><span jhiTranslate="pagolineaApp.plParamBanco.enUso">En Uso</span></th>
-            <th><span jhiTranslate="pagolineaApp.plParamBanco.plParamEnvio">Pl Param Envio</span></th>
-            <th><span jhiTranslate="pagolineaApp.plParamBanco.plParamRespuesta">Pl Param Respuesta</span></th>
             <th></th>
             </tr>
             </thead>
@@ -31,16 +29,6 @@
                 <td>{{plParamBanco.nombre}}</td>
                 <td jhiTranslate="{{'pagolineaApp.TipoParamBanco.' + plParamBanco.tipo}}">{{plParamBanco.tipo}}</td>
                 <td>{{plParamBanco.enUso}}</td>
-                <td>
-                    <div *ngIf="plParamBanco.plParamEnvio">
-                        <a [routerLink]="['../pl-param-envio', plParamBanco.plParamEnvio?.id ]" >{{plParamBanco.plParamEnvio?.id}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="plParamBanco.plParamRespuesta">
-                        <a [routerLink]="['../pl-param-respuesta', plParamBanco.plParamRespuesta?.id ]" >{{plParamBanco.plParamRespuesta?.id}}</a>
-                    </div>
-                </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

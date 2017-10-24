@@ -16,18 +16,6 @@
         <dd>
             <span>{{plParamBanco.enUso}}</span>
         </dd>
-        <dt><span jhiTranslate="pagolineaApp.plParamBanco.plParamEnvio">Pl Param Envio</span></dt>
-        <dd>
-            <div *ngIf="plParamBanco.plParamEnvio">
-                <a [routerLink]="['/pl-param-envio', plParamBanco.plParamEnvio?.id]">{{plParamBanco.plParamEnvio?.id}}</a>
-            </div>
-        </dd>
-        <dt><span jhiTranslate="pagolineaApp.plParamBanco.plParamRespuesta">Pl Param Respuesta</span></dt>
-        <dd>
-            <div *ngIf="plParamBanco.plParamRespuesta">
-                <a [routerLink]="['/pl-param-respuesta', plParamBanco.plParamRespuesta?.id]">{{plParamBanco.plParamRespuesta?.id}}</a>
-            </div>
-        </dd>
     </dl>
 
     <button type="submit"

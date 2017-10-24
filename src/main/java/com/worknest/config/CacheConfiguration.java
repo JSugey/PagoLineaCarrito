@@ -51,6 +51,8 @@ public class CacheConfiguration {
             cm.createCache(com.worknest.domain.PlParamRespuesta.class.getName(), jcacheConfiguration);
             cm.createCache(com.worknest.domain.PlParamRespuesta.class.getName() + ".parametrobancos", jcacheConfiguration);
             cm.createCache(com.worknest.domain.PlRespuestaBanco.class.getName(), jcacheConfiguration);
+            cm.createCache(com.worknest.domain.PlParamBanco.class.getName() + ".paramRespuestas", jcacheConfiguration);
+            cm.createCache(com.worknest.domain.PlParamBanco.class.getName() + ".paramEnvios", jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

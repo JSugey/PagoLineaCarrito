@@ -2,16 +2,16 @@
     "fluentMethods": true,
     "relationships": [
         {
-            "relationshipName": "plParamEnvio",
-            "otherEntityName": "plParamEnvio",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
+            "relationshipType": "one-to-many",
+            "relationshipName": "paramRespuesta",
+            "otherEntityName": "plParamRespuesta",
+            "otherEntityRelationshipName": "plParamBanco"
         },
         {
-            "relationshipName": "plParamRespuesta",
-            "otherEntityName": "plParamRespuesta",
-            "relationshipType": "many-to-one",
-            "otherEntityField": "id"
+            "relationshipType": "one-to-many",
+            "relationshipName": "paramEnvio",
+            "otherEntityName": "plParamEnvio",
+            "otherEntityRelationshipName": "plParamBanco"
         }
     ],
     "fields": [

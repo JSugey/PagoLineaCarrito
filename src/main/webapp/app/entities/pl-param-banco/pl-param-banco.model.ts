@@ -11,8 +11,8 @@ export class PlParamBanco implements BaseEntity {
         public nombre?: string,
         public tipo?: TipoParamBanco,
         public enUso?: string,
-        public plParamEnvio?: BaseEntity,
-        public plParamRespuesta?: BaseEntity,
+        public paramRespuestas?: BaseEntity[],
+        public paramEnvios?: BaseEntity[],
     ) {
     }
 }

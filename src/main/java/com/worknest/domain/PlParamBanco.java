@@ -1,11 +1,14 @@
 package com.worknest.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 import com.worknest.domain.enumeration.TipoParamBanco;
@@ -39,11 +42,15 @@ public class PlParamBanco implements Serializable {
     @Column(name = "en_uso", length = 100)
     private String enUso;
 
-    @ManyToOne
-    private PlParamEnvio plParamEnvio;
+    @OneToMany(mappedBy = "plParamBanco")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<PlParamRespuesta> paramRespuestas = new HashSet<>();
 
-    @ManyToOne
-    private PlParamRespuesta plParamRespuesta;
+    @OneToMany(mappedBy = "plParamBanco")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<PlParamEnvio> paramEnvios = new HashSet<>();
 
     // jhipster-needle-entity-add-field - Jhipster will add fields here, do not remove
     public Long getId() {
@@ -93,30 +100,54 @@ public class PlParamBanco implements Serializable {
         this.enUso = enUso;
     }
 
-    public PlParamEnvio getPlParamEnvio() {
-        return plParamEnvio;
+    public Set<PlParamRespuesta> getParamRespuestas() {
+        return paramRespuestas;
     }
 
-    public PlParamBanco plParamEnvio(PlParamEnvio plParamEnvio) {
-        this.plParamEnvio = plParamEnvio;
+    public PlParamBanco paramRespuestas(Set<PlParamRespuesta> plParamRespuestas) {
+        this.paramRespuestas = plParamRespuestas;
         return this;
     }
 
-    public void setPlParamEnvio(PlParamEnvio plParamEnvio) {
-        this.plParamEnvio = plParamEnvio;
-    }
-
-    public PlParamRespuesta getPlParamRespuesta() {
-        return plParamRespuesta;
-    }
-
-    public PlParamBanco plParamRespuesta(PlParamRespuesta plParamRespuesta) {
-        this.plParamRespuesta = plParamRespuesta;
+    public PlParamBanco addParamRespuesta(PlParamRespuesta plParamRespuesta) {
+        this.paramRespuestas.add(plParamRespuesta);
+        plParamRespuesta.setPlParamBanco(this);
         return this;
     }
 
-    public void setPlParamRespuesta(PlParamRespuesta plParamRespuesta) {
-        this.plParamRespuesta = plParamRespuesta;
+    public PlParamBanco removeParamRespuesta(PlParamRespuesta plParamRespuesta) {
+        this.paramRespuestas.remove(plParamRespuesta);
+        plParamRespuesta.setPlParamBanco(null);
+        return this;
+    }
+
+    public void setParamRespuestas(Set<PlParamRespuesta> plParamRespuestas) {
+        this.paramRespuestas = plParamRespuestas;
+    }
+
+    public Set<PlParamEnvio> getParamEnvios() {
+        return paramEnvios;
+    }
+
+    public PlParamBanco paramEnvios(Set<PlParamEnvio> plParamEnvios) {
+        this.paramEnvios = plParamEnvios;
+        return this;
+    }
+
+    public PlParamBanco addParamEnvio(PlParamEnvio plParamEnvio) {
+        this.paramEnvios.add(plParamEnvio);
+        plParamEnvio.setPlParamBanco(this);
+        return this;
+    }
+
+    public PlParamBanco removeParamEnvio(PlParamEnvio plParamEnvio) {
+        this.paramEnvios.remove(plParamEnvio);
+        plParamEnvio.setPlParamBanco(null);
+        return this;
+    }
+
+    public void setParamEnvios(Set<PlParamEnvio> plParamEnvios) {
+        this.paramEnvios = plParamEnvios;
     }
     // jhipster-needle-entity-add-getters-setters - Jhipster will add getters and setters here, do not remove
 

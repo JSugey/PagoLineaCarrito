@@ -9,6 +9,7 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { PlParamEnvio } from './pl-param-envio.model';
 import { PlParamEnvioPopupService } from './pl-param-envio-popup.service';
 import { PlParamEnvioService } from './pl-param-envio.service';
+import { PlParamBanco, PlParamBancoService } from '../pl-param-banco';
 import { PlIntentoPago, PlIntentoPagoService } from '../pl-intento-pago';
 import { ResponseWrapper } from '../../shared';
 
@@ -21,12 +22,15 @@ export class PlParamEnvioDialogComponent implements OnInit {
     plParamEnvio: PlParamEnvio;
     isSaving: boolean;
 
+    plparambancos: PlParamBanco[];
+
     intentopagos: PlIntentoPago[];
 
     constructor(
         public activeModal: NgbActiveModal,
         private alertService: JhiAlertService,
         private plParamEnvioService: PlParamEnvioService,
+        private plParamBancoService: PlParamBancoService,
         private plIntentoPagoService: PlIntentoPagoService,
         private eventManager: JhiEventManager
     ) {
@@ -34,6 +38,8 @@ export class PlParamEnvioDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
+        this.plParamBancoService.query()
+            .subscribe((res: ResponseWrapper) => { this.plparambancos = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
         this.plIntentoPagoService
             .query({filter: 'plparamenvio-is-null'})
             .subscribe((res: ResponseWrapper) => {
@@ -87,6 +93,10 @@ export class PlParamEnvioDialogComponent implements OnInit {
 
     private onError(error) {
         this.alertService.error(error.message, null, null);
+    }
+
+    trackPlParamBancoById(index: number, item: PlParamBanco) {
+        return item.id;
     }
 
     trackPlIntentoPagoById(index: number, item: PlIntentoPago) {

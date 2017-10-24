@@ -29,6 +29,13 @@
         </div>
 
         <div class="form-group">
+            <label class="form-control-label" jhiTranslate="pagolineaApp.plParamRespuesta.plParamBanco" for="field_plParamBanco">Pl Param Banco</label>
+            <select class="form-control" id="field_plParamBanco" name="plParamBanco" [(ngModel)]="plParamRespuesta.plParamBanco" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="plParamBancoOption.id === plParamRespuesta.plParamBanco?.id ? plParamRespuesta.plParamBanco : plParamBancoOption" *ngFor="let plParamBancoOption of plparambancos; trackBy: trackPlParamBancoById">{{plParamBancoOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
             <label class="form-control-label" jhiTranslate="pagolineaApp.plParamRespuesta.respuestabanco" for="field_respuestabanco">Respuestabanco</label>
             <select class="form-control" id="field_respuestabanco" name="respuestabanco" [(ngModel)]="plParamRespuesta.respuestabanco" >
                 <option [ngValue]="null"></option>

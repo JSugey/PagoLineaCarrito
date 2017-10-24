@@ -16,7 +16,7 @@
                 "title": "Pl Param Respuesta"
             },
             "valor": "Valor",
-            "parametrobanco": "Parametrobanco",
+            "plParamBanco": "Pl Param Banco",
             "respuestabanco": "Respuestabanco"
         }
     }

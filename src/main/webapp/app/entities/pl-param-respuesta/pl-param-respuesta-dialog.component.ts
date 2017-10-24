@@ -9,6 +9,7 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { PlParamRespuesta } from './pl-param-respuesta.model';
 import { PlParamRespuestaPopupService } from './pl-param-respuesta-popup.service';
 import { PlParamRespuestaService } from './pl-param-respuesta.service';
+import { PlParamBanco, PlParamBancoService } from '../pl-param-banco';
 import { PlRespuestaBanco, PlRespuestaBancoService } from '../pl-respuesta-banco';
 import { ResponseWrapper } from '../../shared';
 
@@ -21,12 +22,15 @@ export class PlParamRespuestaDialogComponent implements OnInit {
     plParamRespuesta: PlParamRespuesta;
     isSaving: boolean;
 
+    plparambancos: PlParamBanco[];
+
     plrespuestabancos: PlRespuestaBanco[];
 
     constructor(
         public activeModal: NgbActiveModal,
         private alertService: JhiAlertService,
         private plParamRespuestaService: PlParamRespuestaService,
+        private plParamBancoService: PlParamBancoService,
         private plRespuestaBancoService: PlRespuestaBancoService,
         private eventManager: JhiEventManager
     ) {
@@ -34,6 +38,8 @@ export class PlParamRespuestaDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
+        this.plParamBancoService.query()
+            .subscribe((res: ResponseWrapper) => { this.plparambancos = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
         this.plRespuestaBancoService.query()
             .subscribe((res: ResponseWrapper) => { this.plrespuestabancos = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
@@ -76,6 +82,10 @@ export class PlParamRespuestaDialogComponent implements OnInit {
 
     private onError(error) {
         this.alertService.error(error.message, null, null);
+    }
+
+    trackPlParamBancoById(index: number, item: PlParamBanco) {
+        return item.id;
     }
 
     trackPlRespuestaBancoById(index: number, item: PlRespuestaBanco) {

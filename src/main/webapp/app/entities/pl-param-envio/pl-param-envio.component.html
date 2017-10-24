@@ -18,6 +18,7 @@
             <tr>
             <th><span jhiTranslate="global.field.id">ID</span></th>
             <th><span jhiTranslate="pagolineaApp.plParamEnvio.valor">Valor</span></th>
+            <th><span jhiTranslate="pagolineaApp.plParamEnvio.plParamBanco">Pl Param Banco</span></th>
             <th><span jhiTranslate="pagolineaApp.plParamEnvio.intentopago">Intentopago</span></th>
             <th></th>
             </tr>
@@ -26,6 +27,11 @@
             <tr *ngFor="let plParamEnvio of plParamEnvios ;trackBy: trackId">
                 <td><a [routerLink]="['../pl-param-envio', plParamEnvio.id ]">{{plParamEnvio.id}}</a></td>
                 <td>{{plParamEnvio.valor}}</td>
+                <td>
+                    <div *ngIf="plParamEnvio.plParamBanco">
+                        <a [routerLink]="['../pl-param-banco', plParamEnvio.plParamBanco?.id ]" >{{plParamEnvio.plParamBanco?.id}}</a>
+                    </div>
+                </td>
                 <td>
                     <div *ngIf="plParamEnvio.intentopago">
                         <a [routerLink]="['../pl-intento-pago', plParamEnvio.intentopago?.id ]" >{{plParamEnvio.intentopago?.id}}</a>

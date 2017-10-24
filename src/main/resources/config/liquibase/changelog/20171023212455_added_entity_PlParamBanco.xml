@@ -33,14 +33,6 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="pl_param_envio_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="pl_param_respuesta_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
         

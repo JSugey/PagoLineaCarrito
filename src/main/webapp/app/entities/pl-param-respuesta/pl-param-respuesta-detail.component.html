@@ -8,6 +8,12 @@
         <dd>
             <span>{{plParamRespuesta.valor}}</span>
         </dd>
+        <dt><span jhiTranslate="pagolineaApp.plParamRespuesta.plParamBanco">Pl Param Banco</span></dt>
+        <dd>
+            <div *ngIf="plParamRespuesta.plParamBanco">
+                <a [routerLink]="['/pl-param-banco', plParamRespuesta.plParamBanco?.id]">{{plParamRespuesta.plParamBanco?.id}}</a>
+            </div>
+        </dd>
         <dt><span jhiTranslate="pagolineaApp.plParamRespuesta.respuestabanco">Respuestabanco</span></dt>
         <dd>
             <div *ngIf="plParamRespuesta.respuestabanco">

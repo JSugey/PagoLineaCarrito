@@ -2,10 +2,10 @@
     "fluentMethods": true,
     "relationships": [
         {
-            "relationshipType": "one-to-many",
-            "relationshipName": "parametrobanco",
+            "relationshipName": "plParamBanco",
             "otherEntityName": "plParamBanco",
-            "otherEntityRelationshipName": "plParamRespuesta"
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
         },
         {
             "relationshipType": "many-to-one",

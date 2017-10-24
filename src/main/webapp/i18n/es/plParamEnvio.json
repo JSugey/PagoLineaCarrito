@@ -16,8 +16,8 @@
                 "title": "Pl Param Envio"
             },
             "valor": "Valor",
-            "intentopago": "Intentopago",
-            "parametrobanco": "Parametrobanco"
+            "plParamBanco": "Pl Param Banco",
+            "intentopago": "Intentopago"
         }
     }
 }
