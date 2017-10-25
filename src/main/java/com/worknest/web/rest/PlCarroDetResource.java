@@ -8,9 +8,9 @@ import com.worknest.repository.PlCarroDetRepository;
 import com.worknest.service.ServicioPlCarroDet;
 import com.worknest.service.ServicioPlCarro;
 import com.worknest.service.dto.AgregarConceptoDTO;
+import com.worknest.web.rest.errors.ExceptionAPI;
 import com.worknest.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
-import java.math.BigDecimal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.time.LocalDate;
 import java.util.HashMap;
 
 import java.util.List;
@@ -139,35 +138,59 @@ public class PlCarroDetResource {
      */
     @PostMapping("/pl-carro-det/agregar-concepto")
     @Timed
-    public ResponseEntity agegarConcepto(@RequestBody AgregarConceptoDTO nuevoConcepto){
+    public ResponseEntity agegarConcepto(@RequestBody AgregarConceptoDTO nuevoConcepto) throws Exception{
         ResponseEntity respuesta = null;//Respuesta a la petición del cliente
         Map resultado = new HashMap();//Map para generar el JSON con nombre
         
-        Long idUsuario = (long)951; //se optiene del id del usuario logeado
+        Long idUsuario = (long)3451; //se optiene del id del usuario logeado
         PlCarro carrito = servicioCarro.buscarUsuario(idUsuario); //se busca el carro del usuario      
         PlCarroDet detallesCarro;
-        //****datos de prueba***
-            Long idLiq = (long)123;//id liquidacion
-            LocalDate fecha = LocalDate.now();//fecha de vigencia
-            BigDecimal importe= new BigDecimal("222221.23");//importe
-            String concepto;//concepto de liquidacion
-            Boolean genero;
-        if (nuevoConcepto.getBimini()==null || nuevoConcepto.getBimfin()== null) {//agregar al carro por numero de liquidacion
-            //consultar liquidacion 
-            concepto = "concepto prueba liquidacion";
-            //crear nuevo concepto en PlCarroDet
-            genero=false;
-            
-        }else{ //agregar al carro por clave catastral
-            //generar liquidacion con los datos del nuevo concepto
-            concepto = "concepto prueba clave catastral";
-            //crear nuevo concepto en PlCarroDet
-            genero=true;
+        try{
+            servicioCarroDet.guardarCarritoDet(nuevoConcepto,carrito);//guarda el nuevo concepto en el carro
+            respuesta= new ResponseEntity("", HttpStatus.OK);
+        }catch(ExceptionAPI e){
+            resultado.put("respuesta",e.getMessage());
+            respuesta= ResponseEntity.status(e.getEstadoHttp()).body(resultado);
+        }      
+        return respuesta;
+    }
+    
+    /**
+     * Método que lista los conceptos que el usuario logeado tiene en su carro
+     * @return ResponseEntity con lista de conceptos que se encuentran en el carro del usuario
+     * si el carro se encuentra vacio se devuelve un codigo 400 con un mensaje de error
+     */
+    @GetMapping("/pl-carro-det/obtener")
+    @Timed
+    public ResponseEntity obtenerConceptos() throws Exception{
+        ResponseEntity respuesta = null;//Respuesta a la petición del cliente
+        Map resultado = new HashMap();//Map para generar el JSON con nombre
+        
+        Long idUsuario= (long)3701;//obtener el usuario logeado
+        PlCarro carrito = servicioCarro.buscarUsuario(idUsuario); //se busca el carro del usuario    
+
+        try{
+            respuesta= new ResponseEntity(servicioCarroDet.buscarPorCarro(carrito), HttpStatus.OK);
+        }catch(ExceptionAPI e){
+            resultado.put("respuesta",e.getMessage());
+            respuesta= ResponseEntity.status(e.getEstadoHttp()).body(resultado);
         }
-        detallesCarro = new PlCarroDet(idLiq, fecha, importe, nuevoConcepto.getLlave(),concepto,genero,carrito); //Agregamos la respuesta al map
-        servicioCarroDet.guardarCarritoDet(detallesCarro);
-        resultado.put("respuesta", detallesCarro);//Generamos el JSON con el concepto agregado
-        respuesta = new ResponseEntity(resultado, HttpStatus.OK);//Retornamos la respuesta con el json y el estatus
+        return respuesta;
+    }
+    
+    @DeleteMapping("/pl-carro-de/borrar/{llave}")
+    @Timed
+    public ResponseEntity borrarConcepto(@PathVariable String llave) throws Exception{
+        ResponseEntity respuesta = null;//Respuesta a la petición del cliente
+        Map resultado = new HashMap();//Map para generar el JSON con nombre
+        log.debug("llave a eliminar" + llave);
+        try{
+            servicioCarroDet.borrarConcepto(llave);
+            respuesta= new ResponseEntity("", HttpStatus.OK);
+        }catch(ExceptionAPI e){
+            resultado.put("respuesta",e.getMessage());
+            respuesta= ResponseEntity.status(e.getEstadoHttp()).body(resultado);
+        }
         return respuesta;
     }
 }

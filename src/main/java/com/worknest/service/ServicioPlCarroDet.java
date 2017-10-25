@@ -5,12 +5,23 @@
  */
 package com.worknest.service;
 
+import com.worknest.domain.PlCarro;
 import com.worknest.domain.PlCarroDet;
+import com.worknest.service.dto.AgregarConceptoDTO;
+import com.worknest.web.rest.errors.ExceptionAPI;
+import java.util.Map;
 
 /**
  *
  * @author WorkNest9
  */
 public interface ServicioPlCarroDet {
-    void guardarCarritoDet(PlCarroDet carritoDet);
+    //guarda en el carro los detalles del un nuevo concepto
+    void guardarCarritoDet(AgregarConceptoDTO nuevoConcepto, PlCarro carro) throws ExceptionAPI, Exception;
+    
+    //obtiene los conceptos de un carro
+    Map buscarPorCarro(PlCarro carro) throws ExceptionAPI, Exception;
+    
+    //borra concepto por llave
+    void borrarConcepto(String llave) throws ExceptionAPI, Exception;
 }

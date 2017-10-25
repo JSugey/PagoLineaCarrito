@@ -128,7 +128,7 @@ public class PlCarroResource {
     @PostMapping("pl-carro/crear")
     @Timed
     public void crearCarro(){
-        Long idUsuario = (long)951; //se optiene del id del usuario logeado
+        Long idUsuario = (long)3701; //se optiene del id del usuario logeado
         PlCarro carrito = servicioCarro.buscarUsuario(idUsuario); //se busca si el usuario tiene un carro registrado
         if (carrito == null) { //si el usuario no tiene un carro, se le crea uno
             PlCarro carrito2 = new PlCarro(idUsuario);            
