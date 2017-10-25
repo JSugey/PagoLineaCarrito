@@ -134,7 +134,8 @@ public class PlCarroDetResource {
     /**
      * Metodo que agrega un nuevo concepto a la tabla PlCarroDet
      * @param nuevoConcepto datos del concepto a agregar (llave,bimestre inicia y bimestre final)
-     * @return ResponseEntity con status 200(ok) o 400 con mensaje de error
+     * @return ResponseEntity con status 200(ok) 
+     * @throws Exception ResponseEntity con status 400 y mensaje de error
      */
     @PostMapping("/pl-carro-det/agregar-concepto")
     @Timed
@@ -157,8 +158,8 @@ public class PlCarroDetResource {
     
     /**
      * Método que lista los conceptos que el usuario logeado tiene en su carro
-     * @return ResponseEntity con lista de conceptos que se encuentran en el carro del usuario
-     * si el carro se encuentra vacio se devuelve un codigo 400 con un mensaje de error
+     * @return ResponseEntity con lista de conceptos que se encuentran en el carro del usuario y status 200
+     * @throws Exception si el carro se encuentra vacio se devuelve un codigo 400 con un mensaje de error
      */
     @GetMapping("/pl-carro-det/obtener")
     @Timed
@@ -178,12 +179,18 @@ public class PlCarroDetResource {
         return respuesta;
     }
     
+    /**
+     * Metodo que borra los conceptos segun su llave
+     * @param llave puede ser clave catastra o numero de liquidación
+     * @return ResponseEntity con status 200 (OK)
+     * @throws Exception RsponseEntity con status 400 y mensaje de error
+     */
     @DeleteMapping("/pl-carro-de/borrar/{llave}")
     @Timed
     public ResponseEntity borrarConcepto(@PathVariable String llave) throws Exception{
         ResponseEntity respuesta = null;//Respuesta a la petición del cliente
         Map resultado = new HashMap();//Map para generar el JSON con nombre
-        log.debug("llave a eliminar" + llave);
+        
         try{
             servicioCarroDet.borrarConcepto(llave);
             respuesta= new ResponseEntity("", HttpStatus.OK);

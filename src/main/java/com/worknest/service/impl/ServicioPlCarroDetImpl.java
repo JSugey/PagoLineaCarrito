@@ -74,6 +74,11 @@ public class ServicioPlCarroDetImpl implements ServicioPlCarroDet{
         if (concepto.isEmpty()) {                                               //si no se encuentra se arroja una excepcion
             throw new ExceptionAPI(HttpStatus.BAD_REQUEST,"No se encuentra la llave del concepto");//se arroja una excepcion personalizada con mensaje personalizado
         }
-        repositorioCarroDet.delete(concepto);
+        for (PlCarroDet carroDet : concepto) {
+            if (carroDet.isGeneroUs()) {//si fue generada por el usuario
+                //Borrar todas las liquidaciones segun la llave
+            }
+        }
+        repositorioCarroDet.delete(concepto); //se borran los conceptos del a base de datos
     }
 }
