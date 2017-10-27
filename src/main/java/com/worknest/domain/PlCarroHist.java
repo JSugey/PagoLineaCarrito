@@ -83,6 +83,16 @@ public class PlCarroHist implements Serializable {
     public void setCarro(PlCarro plCarro) {
         this.carro = plCarro;
     }
+
+    public PlCarroHist() {
+    }
+
+    public PlCarroHist(ZonedDateTime fechaEnvio, String referencia, PlCarro carro) {
+        this.fechaEnvio = fechaEnvio;
+        this.referencia = referencia;
+        this.carro = carro;
+    }
+    
     // jhipster-needle-entity-add-getters-setters - Jhipster will add getters and setters here, do not remove
 
     @Override

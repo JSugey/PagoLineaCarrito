@@ -152,6 +152,20 @@ public class PlCarroDetHist implements Serializable {
     public void setCarro(PlCarroHist plCarroHist) {
         this.carro = plCarroHist;
     }
+
+    public PlCarroDetHist() {
+    }
+
+    public PlCarroDetHist(String concepto, Long idLiquidacion, LocalDate fechaVigencia, BigDecimal importe, String llave, Boolean generoUs, PlCarroHist carro) {
+        this.concepto = concepto;
+        this.idLiquidacion = idLiquidacion;
+        this.fechaVigencia = fechaVigencia;
+        this.importe = importe;
+        this.llave = llave;
+        this.generoUs = generoUs;
+        this.carro = carro;
+    }    
+    
     // jhipster-needle-entity-add-getters-setters - Jhipster will add getters and setters here, do not remove
 
     @Override

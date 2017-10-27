@@ -13,9 +13,7 @@ import com.worknest.service.dto.AgregarConceptoDTO;
 import com.worknest.web.rest.errors.ExceptionAPI;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.http.HttpStatus;
@@ -58,14 +56,12 @@ public class ServicioPlCarroDetImpl implements ServicioPlCarroDet{
     }
 
     @Override
-    public Map buscarPorCarro(PlCarro carro)  throws ExceptionAPI, Exception{
-        Map mapeoDeLista = new HashMap();                                     //Se inicializa un mapa
+    public List<PlCarroDet> buscarPorCarro(PlCarro carro)  throws ExceptionAPI, Exception{
         List<PlCarroDet> listaCarro = repositorioCarroDet.findByCarro(carro); //se buscan los conceptos segun el carro del usuario1
-        mapeoDeLista.put("respuesta",listaCarro);                             //se mapea la lista de resultad bajo la llave "respuesta"
         if(listaCarro.isEmpty()){
             throw new ExceptionAPI(HttpStatus.BAD_REQUEST,"No se encontraron conceptos dentro del carro");//se arroja una excepcion personalizada con mensaje personalizado
         }
-        return mapeoDeLista;
+        return listaCarro;
     }    
 
     @Override

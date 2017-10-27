@@ -117,6 +117,18 @@ public class PlIntentoPago implements Serializable {
     public void setHistorialcarro(PlCarroHist plCarroHist) {
         this.historialcarro = plCarroHist;
     }
+
+    public PlIntentoPago() {
+    }
+
+    public PlIntentoPago(ZonedDateTime fecha, Boolean enviado, StatusIntentoPago status, String auth, PlCarroHist historialcarro) {
+        this.fecha = fecha;
+        this.enviado = enviado;
+        this.status = status;
+        this.auth = auth;
+        this.historialcarro = historialcarro;
+    }    
+    
     // jhipster-needle-entity-add-getters-setters - Jhipster will add getters and setters here, do not remove
 
     @Override

@@ -143,7 +143,7 @@ public class PlCarroDetResource {
         ResponseEntity respuesta = null;//Respuesta a la petición del cliente
         Map resultado = new HashMap();//Map para generar el JSON con nombre
         
-        Long idUsuario = (long)3451; //se optiene del id del usuario logeado
+        Long idUsuario = (long)3701; //se optiene del id del usuario logeado
         PlCarro carrito = servicioCarro.buscarUsuario(idUsuario); //se busca el carro del usuario      
         PlCarroDet detallesCarro;
         try{
@@ -171,7 +171,8 @@ public class PlCarroDetResource {
         PlCarro carrito = servicioCarro.buscarUsuario(idUsuario); //se busca el carro del usuario    
 
         try{
-            respuesta= new ResponseEntity(servicioCarroDet.buscarPorCarro(carrito), HttpStatus.OK);
+            resultado.put("respuesta",servicioCarroDet.buscarPorCarro(carrito));
+            respuesta= new ResponseEntity(resultado, HttpStatus.OK);
         }catch(ExceptionAPI e){
             resultado.put("respuesta",e.getMessage());
             respuesta= ResponseEntity.status(e.getEstadoHttp()).body(resultado);
@@ -200,4 +201,6 @@ public class PlCarroDetResource {
         }
         return respuesta;
     }
+    
+    
 }

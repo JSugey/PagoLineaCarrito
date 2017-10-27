@@ -9,7 +9,7 @@ import com.worknest.domain.PlCarro;
 import com.worknest.domain.PlCarroDet;
 import com.worknest.service.dto.AgregarConceptoDTO;
 import com.worknest.web.rest.errors.ExceptionAPI;
-import java.util.Map;
+import java.util.List;
 
 /**
  *
@@ -20,7 +20,7 @@ public interface ServicioPlCarroDet {
     void guardarCarritoDet(AgregarConceptoDTO nuevoConcepto, PlCarro carro) throws ExceptionAPI, Exception;
     
     //obtiene los conceptos de un carro
-    Map buscarPorCarro(PlCarro carro) throws ExceptionAPI, Exception;
+    List<PlCarroDet> buscarPorCarro(PlCarro carro) throws ExceptionAPI, Exception;
     
     //borra concepto por llave
     void borrarConcepto(String llave) throws ExceptionAPI, Exception;
